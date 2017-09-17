@@ -5,6 +5,8 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import com.example.artur.kotlinpaging.ioThread
+
 
 
 /**
@@ -23,10 +25,8 @@ abstract class UserDB: RoomDatabase() {
             if (instance == null) {
                 instance = Room.databaseBuilder(context.applicationContext, UserDB::class.java, "users.db").addCallback(object : RoomDatabase.Callback(){
                     override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db: SupportSQLiteDatabase) {
                             fillInDb(context)
                         }
-                    }
                 }).build()
             }
         }
